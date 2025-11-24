@@ -76,6 +76,11 @@ function sortTable() {
 function selectRow() {
   body.addEventListener('click', (evnt) => {
     const targetRow = evnt.target.closest('tr');
+
+    if (!targetRow) {
+      return;
+    }
+
     const rows = Array.from(body.querySelectorAll('tr'));
 
     rows.forEach((row) => {
@@ -131,7 +136,7 @@ function createForm() {
     const capitalizedName =
       fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
 
-    labelElement.innerText = capitalizedName;
+    labelElement.innerText = capitalizedName + ':';
 
     let inputElement;
 
@@ -219,7 +224,7 @@ function getFieldError(fieldName, value) {
   switch (fieldName) {
     case 'name':
       if (value.length < 4) {
-        return 'The name should be more then 3 symbols';
+        return 'The name should be more than 3 symbols';
       }
       break;
 
@@ -228,6 +233,12 @@ function getFieldError(fieldName, value) {
 
       if (age < 18 || age > 90) {
         return 'Age must be between 18 and 90 years old.';
+      }
+      break;
+
+    case 'position':
+      if (value.length === 0) {
+        return 'You should enter position';
       }
       break;
   }
