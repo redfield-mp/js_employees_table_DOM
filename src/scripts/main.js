@@ -196,6 +196,7 @@ function validateForm() {
 
     tr.innerHTML = row;
     body.appendChild(tr);
+    showNotifications('success', [{ message: 'Success' }]);
   });
 }
 
@@ -235,7 +236,7 @@ function getFieldError(fieldName, value) {
 }
 
 function showNotifications(type, errors) {
-  errors.forEach(({ fieldName, value, message }) => {
+  errors.forEach(({ message }) => {
     const notification = document.createElement('div');
 
     notification.classList.add('notification', type);
